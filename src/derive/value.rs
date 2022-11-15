@@ -34,7 +34,7 @@ pub fn expand_derive_from_value(ident: Ident, data: Data) -> syn::Result<TokenSt
                     if array.len() > 0 {
                         return Self::try_from(array.get(0).unwrap().clone());
                     } else {
-                        return Err(surrealdb::Error::TryFromError(value.to_string(), "Value contains an empty array"));
+                        return Err(surrealdb::Error::QueryEmpty);
                     }
                 },
                 _ => Err(surrealdb::Error::TryFromError(value.to_string(), "Value not an object")),
